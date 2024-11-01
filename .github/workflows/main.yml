@@ -13,9 +13,9 @@ jobs:
       max-parallel: 2  # 一次最多執行兩個腳本
       matrix:
         script:
-          - 'code/Tokyo/tokyo.py'
-          - 'code/Tokyo/tokyo_business.py'
-          - 'code/Sydney/sydney.py'
+          - 'code/seoul_busi_flights.py'
+          - 'code/seoul_eco_flights.py'
+          - 'code/zrh_busi_flights.py'
           - 'code/Sydney/sydney_business.py'
 
     steps:
