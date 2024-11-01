@@ -13,10 +13,10 @@ jobs:
       max-parallel: 2  # 一次最多執行兩個腳本
       matrix:
         script:
-          - 'code/seoul_busi_flights.py'
-          - 'code/seoul_eco_flights.py'
-          - 'code/zrh_busi_flights.py'
-          - 'code/Sydney/sydney_business.py'
+          - 'seoul_busi_flights.py'
+          - 'seoul_eco_flights.py'
+          - 'zrh_busi_flights.py'
+          - 'Sydney/sydney_business.py'
 
     steps:
     - name: Checkout repository
@@ -52,4 +52,4 @@ jobs:
       uses: actions/upload-artifact@v3  # 使用最新版本
       with:
         name: flight-data
-        path: data/*.csv  # 上傳所有生成的 CSV 文件
+        path: /*.csv  # 上傳所有生成的 CSV 文件
