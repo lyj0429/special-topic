@@ -50,7 +50,7 @@ def scrape_flights(start_date_str, end_date_str):
     while current_date <= end_date:
         print(f"正在抓取日期: {current_date.strftime('%Y-%m-%d')}")
 
-        url = "https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI1LTAxLTE5KABqDAgCEggvbS8wZnRreHIMCAMSCC9tLzBoc3FmQAFIA3ABggELCP___________wGYAQI&hl=zh-TW"
+        url = "https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI1LTAxLTE5KABqDAgCEggvbS8wZnRreHIMCAMSCC9tLzBoc3FmQAFIA3ABggELCP___________wGYAQI&hl=gl=TW"
         driver.get(url)
 
         # 點擊日期選擇器
