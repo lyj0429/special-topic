@@ -2,8 +2,8 @@ name: Run Python Scripts Automatically in Pairs
 
 on:
   schedule:
-    # 每日台灣時間13:00
-    - cron: '0 5 * * *'  # 注意: GitHub Actions 使用 UTC 時間，台灣時間早上6點相當於 UTC 22:00
+    # 每日台灣時間13:00 (相當於 UTC 時間05:00)
+    - cron: '0 5 * * *'
 
 jobs:
   run-scripts:
@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4  # 確保使用最新版本
+      uses: actions/checkout@v4  # 使用最新版本檢出存儲庫
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -36,20 +36,17 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install --reinstall -y chromium-chromedriver
-        if [ -L /usr/bin/chromedriver ]; then
-          sudo rm /usr/bin/chromedriver  # 如果存在符號連結，則刪除
-        fi
-        sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver || true  # 強制創建新的符號連結
+        sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver || true  # 強制創建符號連結
 
     - name: Set ChromeDriver Path
       run: echo "CHROMEWEBDRIVER=/usr/bin" >> $GITHUB_ENV  # 設置環境變量
 
     - name: Run script
       run: |
-        python ${{ matrix.script }}  # 動態運行 Python 腳本
+        python ${{ matrix.script }}  # 動態運行矩陣中的 Python 腳本
 
     - name: Upload CSV as artifacts
-      uses: actions/upload-artifact@v3  # 使用最新版本
+      uses: actions/upload-artifact@v3  # 上傳 CSV 文件
       with:
         name: flight-data
-        path: /*.csv  # 上傳所有生成的 CSV 文件
+        path: /*.csv  # 匹配所有生成的 CSV 文件
