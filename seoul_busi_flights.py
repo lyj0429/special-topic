@@ -17,14 +17,15 @@ import re
 import os
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 # 設置 Selenium 驅動
 options = Options()
+options.headless = False 
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-software-rasterizer")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver = webdriver.Chrome(service=service, options=options)
 
 def retry(function, max_retries=3, delay=2):
     """重試機制的通用函數"""
