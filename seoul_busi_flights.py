@@ -11,20 +11,24 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import timedelta, datetime
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import csv
 import re
 import os
 
+
 # 設置 Selenium 驅動
 options = Options()
+options.headless = True  # 如果你不需要显示浏览器窗口，设置为 True
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-software-rasterizer")
 options.add_argument("--headless")
 service = Service("/Users/lbb/Desktop/chromedriver-mac-arm64/chromedriver")
-driver = webdriver.Chrome(service=service, options=options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 
 def retry(function, max_retries=3, delay=2):
     """重試機制的通用函數"""
