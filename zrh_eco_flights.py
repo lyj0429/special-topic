@@ -1,30 +1,20 @@
 import selenium
 import requests
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 import logging
-import time
-import csv
-import re
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from webdriver_manager.chrome import ChromeDriverManager
-
-# 设置 Selenium 驱动选项
-options = Options()
-options.headless = False  # 如果需要无头模式，改为 True
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--disable-gpu")
-options.add_argument("--disable-software-rasterizer")
-
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
+from datetime import datetime, timedelta
+import time
+import csv
+import re
+import os
 
 def calculate_dates(today_date_str):
     today = datetime.strptime(today_date_str, "%Y-%m-%d")
@@ -40,6 +30,15 @@ def calculate_dates(today_date_str):
 
     return start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")
 
+# 設置 Selenium 驅動
+options = Options()
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
+options.add_argument("--disable-software-rasterizer")
+options.add_argument("--headless")
+service = Service("/Users/lbb/Desktop/chromedriver-mac-arm64/chromedriver")
+driver = webdriver.Chrome(service=service, options=options)
 
 def scrape_flights(start_date_str, end_date_str):
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
@@ -52,7 +51,7 @@ def scrape_flights(start_date_str, end_date_str):
     while current_date <= end_date:
         print(f"正在抓取日期: {current_date.strftime('%Y-%m-%d')}")
 
-        url = "https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI1LTAxLTE5KAFqDAgCEggvbS8wZnRreHIMCAMSCC9tLzA4OTY2QAFIA3ABggELCP___________wGYAQI&tfu=EgYIABABGAA&hl=gl=TW"
+        url = "https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI1LTAxLTE5KAFqDAgCEggvbS8wZnRreHIMCAMSCC9tLzA4OTY2QAFIA3ABggELCP___________wGYAQI&tfu=EgYIABABGAA&hl=zh-TW"
         driver.get(url)
 
         # 點擊日期選擇器
