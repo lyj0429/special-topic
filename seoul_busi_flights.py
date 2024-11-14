@@ -26,7 +26,6 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-software-rasterizer")
 options.add_argument("--headless")
-service = Service("/Users/lbb/Desktop/chromedriver-mac-arm64/chromedriver")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
