@@ -118,7 +118,7 @@ def scrape_flights(start_date_str, end_date_str):
         today_date = datetime.now().strftime("%m%d")
         
         # 準備寫入 CSV 檔案
-        with open(f'/Users/lbb/Desktop/NTPUSTAT/十分有趣的專題/seoul_busi_{today_date}.csv', 'a', newline='', encoding='utf-8-sig') as csv_file:
+        with open(f'/Users/lbb/data/seoul_busi_{today_date}.csv', 'a', newline='', encoding='utf-8-sig') as csv_file:
             csv_writer = csv.writer(csv_file)
 
             # 寫入標題
