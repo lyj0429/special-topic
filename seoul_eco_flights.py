@@ -26,7 +26,6 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-software-rasterizer")
 options.add_argument("--headless")
-service = Service("/Users/lbb/Desktop/chromedriver-mac-arm64/chromedriver")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
@@ -54,7 +53,7 @@ def scrape_flights(start_date_str, end_date_str):
     while current_date <= end_date:
         print(f"正在抓取日期: {current_date.strftime('%Y-%m-%d')}")
 
-        url = "https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI1LTAxLTE5KABqDAgCEggvbS8wZnRreHIMCAMSCC9tLzBoc3FmQAFIAXABggELCP___________wGYAQI&hl=zh-TW"
+        url = "https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI1LTAxLTE5KABqDAgCEggvbS8wZnRreHIMCAMSCC9tLzBoc3FmQAFIAXABggELCP___________wGYAQI&hl=gl=TW"
         driver.get(url)
 
         # 點擊日期選擇器
