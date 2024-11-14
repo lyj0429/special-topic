@@ -3,7 +3,7 @@ name: Run Python Scripts Automatically in Pairs
 on:
   schedule:
     # 每日台灣時間13:00 (相當於 UTC 時間05:00)
-    - cron: '0 5 * * *'
+    - cron: '0 17 * * *'
 
 jobs:
   run-scripts:
@@ -38,4 +38,4 @@ jobs:
       uses: actions/upload-artifact@v3  # 上傳 CSV 文件
       with:
         name: flight-data
-        path: /*.csv  # 匹配所有生成的 CSV 文件
+        path: ./*.csv  # 匹配所有生成的 CSV 文件
