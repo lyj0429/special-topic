@@ -15,8 +15,6 @@ jobs:
         script:
           - 'seoul_busi_flights.py'
           - 'seoul_eco_flights.py'
-          - 'zrh_busi_flights.py'
-          - 'Sydney/sydney_business.py'
 
     steps:
     - name: Checkout repository
