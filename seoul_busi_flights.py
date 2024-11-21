@@ -14,7 +14,7 @@ import os
 import csv
 import re
 
-# Discord Webhook URL
+#Discord Webhook URL
 #WEBHOOK_URL = "https://discord.com/api/webhooks/1295434884361228450/zwTbBwZK3hryiEqFiCa6HWGXzZtWHRldTizl4BUNyZcw_0IHb94kbmikoKwOeFObbGBk"
 
 # 發送 Discord 通知的函數
@@ -40,15 +40,14 @@ def calculate_dates(today_date_str):
 
     return start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")
 
-# 設置 Selenium 驅動
+# 設置 WebDriver 選項
 options = Options()
+options.add_argument("--headless")  # 無頭模式
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--disable-gpu")
-options.add_argument("--disable-software-rasterizer")
-options.add_argument("--headless")
 service = Service("/Users/lbb/Desktop/chromedriver-mac-arm64/chromedriver")
 driver = webdriver.Chrome(service=service, options=options)
+
 
 def scroll_to_element(element):
     driver.execute_script("arguments[0].scrollIntoView(true);", element)
